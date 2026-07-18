@@ -22,7 +22,29 @@ using Pkg
 Pkg.add("MonteCarloJackknife")
 ```
 
-## Quick Example
+## API
+
+```julia
+mc_delete_d_jackknife(
+    f::Function,
+    data,
+    d::Int;
+    num_samples = 1000,
+    multithreaded = false
+)
+```
+
+### Arguments
+
+| Argument        | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| `f`             | User-defined estimator or statistic.                                     |
+| `data`          | Dataset supplied to `f`. May be a vector, matrix, `DataFrame`, or tuple. |
+| `d`             | Number of observations deleted in each subsample.                        |
+| `num_samples`   | Number of Monte Carlo delete-(d) subsamples.                             |
+| `multithreaded` | Whether to evaluate subsamples in parallel.                              |
+
+## A Simple Univariate Example (Median)
 
 Estimate the sampling variability of the sample median using Monte Carlo delete-(d) jackknife.
 
@@ -52,64 +74,64 @@ The returned object contains
 * `bias_corrected_mean` — Bias-corrected delete-(d) jackknife estimate.
 * `std_error` — Delete-(d) jackknife standard error.
 
-## Regression Example
+## A Multivariate Example (Regression)
 
 The package also supports vector-valued estimators.
 
 ```julia
+using MonteCarloJackknife
+using Random
 using LinearAlgebra
 
-ols(data) = begin
+Random.seed!(1234)
+
+# Generate synthetic regression data
+n = 1000
+x1 = randn(n)
+x2 = randn(n)
+
+X = hcat(ones(n), x1, x2)
+
+β = [2.0, 1.5, -0.8]
+y = X * β + randn(n)
+
+# Ordinary least squares estimator
+function ols(data)
     X, y = data
-    X \ y
+    return X \ y
 end
 
 result = mc_delete_d_jackknife(
     ols,
     (X, y),
-    d;
+    200;
     num_samples = 1000
 )
+
+println("Coefficient estimates:")
+println(result.mean_jackknife)
+
+println("\nStandard errors:")
+println(result.std_error)
 ```
 
-The returned `replicates` matrix contains one row for each regression coefficient and one column for each Monte Carlo replicate.
+In this example, `result.replicates` matrix contains one row for each regression coefficient and one column for each Monte Carlo replicate.
 
-## API
-
-```julia
-mc_delete_d_jackknife(
-    f::Function,
-    data,
-    d::Int;
-    num_samples = 1000,
-    multithreaded = false
-)
-```
-
-### Arguments
-
-| Argument        | Description                                                              |
-| --------------- | ------------------------------------------------------------------------ |
-| `f`             | User-defined estimator or statistic.                                     |
-| `data`          | Dataset supplied to `f`. May be a vector, matrix, `DataFrame`, or tuple. |
-| `d`             | Number of observations deleted in each subsample.                        |
-| `num_samples`   | Number of Monte Carlo delete-(d) subsamples.                             |
-| `multithreaded` | Whether to evaluate subsamples in parallel.                              |
 
 ## Applications
 
 MonteCarloJackknife.jl can be used for:
 
+* Computationally efficient approximation of delete-(d) jackknife for large datasets.
 * Standard error estimation.
 * Bias estimation and bias correction.
-* Assessing estimator stability.
-* Computationally efficient approximation of delete-(d) jackknife for large datasets.
+* Assessing estimator stability and multicollinearity.
 * Statistical inference for custom estimators.
-* Machine learning models whose estimators can be computed on subsamples.
+* Fitting machine learning models on subsamples to assess feature importance and parameter sensitivity to sample size.
 
 ## Examples
 
-Additional examples are available in the `examples/` directory, including:
+Additional and more detailed examples are available in the `examples/` directory, including:
 
 * Sample median
 * Pearson correlation
