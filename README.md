@@ -141,6 +141,11 @@ Additional and more detailed examples are available in the `examples/` directory
 
 Coming soon...
 
+## Acknowledgements
+
+The main algorithm that I implemented in this package was inspired by one of the research topics that I had tackled during my PhD studies. For this reason,
+I would like to thank my former academic advisors İlker Birbil ([@sibirbil](https://github.com/sibirbil)) and Sinan Yıldırım ([@sinanyildirim](https://github.com/sinanyildirim)) for the valuable hours that we had spent together working on that topic.
+
 ## License
 
 This package is released under the MIT License.
