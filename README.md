@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="logo.png" alt="Logo" width="400">
-</p>
-
 # MonteCarloJackknife.jl
 
 MonteCarloJackknife.jl is a Julia package for efficient **Monte Carlo approximation of the delete-(d) jackknife**. Instead of exhaustively evaluating all possible delete-(d) subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators.
