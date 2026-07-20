@@ -1,6 +1,6 @@
 name = "MonteCarloJackknife"
 uuid = "6f08d647-cae2-40a6-9239-8df7d8e7d0ed"
-version = "0.5.0"
+version = "0.6.0"
 authors = ["Soner Aydın"]
 
 [deps]
