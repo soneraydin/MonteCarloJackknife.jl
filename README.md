@@ -121,25 +121,64 @@ println(result.std_error)
 
 In this example, `result.replicates` matrix contains one row for each regression coefficient and one column for each Monte Carlo replicate.
 
+## A More Complex Example (Principal Components Analysis)
+
+Here, we use our package to find the distribution of the ratio of variance explained by each principal component in a PCA problem.
+
+```julia
+using MonteCarloJackknife
+using MultivariateStats
+using Random
+
+Random.seed!(1234)
+
+# Generate synthetic data
+n = 1000
+p = 100
+k = 10 # Number of latent dimensions
+
+Z = randn(n, k)
+W = randn(k, p)
+
+X = Z * W + 0.2 * randn(n, p)
+
+# PCA estimator returning ordered explained variance ratios
+function pca_scree(data)
+    model = fit(PCA, data; maxoutdim=size(data, 2))
+    principalvars(model) ./ tvar(model)
+end
+
+result = mc_delete_d_jackknife(
+    pca_scree,
+    X,
+    200;
+    num_samples = 1000
+)
+
+println(result.mean_jackknife)
+println(result.std_error)
+```
 
 ## Applications
 
 MonteCarloJackknife.jl can be used for:
 
-* Computationally efficient approximation of delete-(d) jackknife for large datasets.
+* Computationally efficient approximation of delete-(d) jackknife for large datasets and complex functions.
 * Standard error estimation.
 * Bias estimation and bias correction.
+* Constructing weakly informative priors for regularized machine learning (ML) models.
 * Assessing estimator stability and multicollinearity.
 * Statistical inference for custom estimators.
-* Fitting machine learning models on subsamples to assess feature importance and parameter sensitivity to sample size.
+* Assesing feature importance and parameter sensitivity to sample size.
 
 ## Examples
 
-Additional and more detailed examples are available in the `examples/` directory, including:
+Additional examples and more detailed versions of the ones above are available in the `examples/` directory, including:
 
 * Sample median
 * Pearson correlation
 * Ordinary least squares regression
+* Principal Components Analysis
 
 ## Citation
 
