@@ -170,6 +170,7 @@ MonteCarloJackknife.jl can be used for:
 * Assessing estimator stability and multicollinearity.
 * Statistical inference for custom estimators.
 * Assesing feature importance and parameter sensitivity to sample size.
+* Ensemble learning, via combining the parameters from ML models fitted on subsamples.
 
 ## Examples
 
