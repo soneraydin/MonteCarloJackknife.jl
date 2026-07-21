@@ -176,10 +176,11 @@ MonteCarloJackknife.jl can be used for:
 
 Additional examples and more detailed versions of the ones above are available in the `examples/` directory, including:
 
-* Sample median
 * Pearson correlation
-* Ordinary least squares regression
+* Sample median
+* Multivariate linear regression
 * Principal Components Analysis
+* Binary classification
 
 ## Citation
 
