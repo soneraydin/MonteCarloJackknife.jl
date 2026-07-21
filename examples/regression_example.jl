@@ -117,7 +117,7 @@ display(p)
 # Correlation heatmap
 # -------------------------------------------------------------------------
 
-corrmat = cor(permutedims(betas))
+corrmat = cor(betas')
 
 heatmap(
     corrmat,
