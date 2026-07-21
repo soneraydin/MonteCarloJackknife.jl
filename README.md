@@ -166,11 +166,11 @@ MonteCarloJackknife.jl can be used for:
 * Computationally efficient approximation of delete-(d) jackknife for large datasets and complex functions.
 * Standard error estimation.
 * Bias estimation and bias correction.
+* Empirical estimation of t-statistics and p-values for arbitrarily complex parameters, without distributional assumptions.
 * Constructing weakly informative priors for regularized machine learning (ML) models.
 * Assessing estimator stability and multicollinearity.
-* Statistical inference for custom estimators.
 * Assesing feature importance and parameter sensitivity to sample size.
-* Ensemble learning, via combining the parameters from ML models fitted on subsamples.
+* Ensemble learning, via combining the parameters from ML models fitted on different subsamples.
 
 ## Examples
 
