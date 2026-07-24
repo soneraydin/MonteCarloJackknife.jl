@@ -25,52 +25,37 @@ function mc_delete_d_jackknife(
     multithreaded=false
 )
 
-    # ----------------------------------------------------------------------
     # Determine sample size
-    # ----------------------------------------------------------------------
     n = nobs(data)
     r = n - d
 
     r > 0 || throw(ArgumentError("d ($d) must be less than sample size n ($n)"))
 
-    # ----------------------------------------------------------------------
     # Determine output type
-    # ----------------------------------------------------------------------
     test_idx = sample(1:n, r; replace=false)
     first_eval = f(select_obs(data, test_idx))
     results_type = typeof(first_eval)
 
-    # ----------------------------------------------------------------------
     # Allocate storage
-    # ----------------------------------------------------------------------
     if results_type <: Number
         thetas = Vector{Float64}(undef, num_samples)
     else
         thetas = Matrix{Float64}(undef, length(first_eval), num_samples)
     end
 
-    # ----------------------------------------------------------------------
     # Monte Carlo sampling
-    # ----------------------------------------------------------------------
     if multithreaded
-
         Threads.@threads for i in 1:num_samples
-
             idx = sample(1:n, r; replace=false)
             sub_sample = select_obs(data, idx)
-
             if results_type <: Number
                 thetas[i] = Float64(f(sub_sample))
             else
                 thetas[:, i] = Float64.(f(sub_sample))
             end
-
         end
-
     else
-
         for i in 1:num_samples
-
             idx = sample(1:n, r; replace=false)
             sub_sample = select_obs(data, idx)
 
@@ -79,14 +64,10 @@ function mc_delete_d_jackknife(
             else
                 thetas[:, i] = Float64.(f(sub_sample))
             end
-
         end
-
     end
 
-    # ----------------------------------------------------------------------
     # Compute jackknife estimates
-    # ----------------------------------------------------------------------
     theta_full = f(data)
 
     if results_type <: Number
@@ -98,9 +79,7 @@ function mc_delete_d_jackknife(
     bias_corrected_theta =
         (n .* theta_full .- (n - d) .* mean_theta) ./ d
 
-    # ----------------------------------------------------------------------
     # Standard error
-    # ----------------------------------------------------------------------
     if results_type <: Number
         raw_std = std(thetas; corrected=false)
     else
@@ -120,9 +99,7 @@ function mc_delete_d_jackknife(
 end
 
 
-# ==========================================================================
 # Dataset interface
-# ==========================================================================
 
 """
     nobs(data)
