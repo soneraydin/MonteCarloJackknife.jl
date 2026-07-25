@@ -120,20 +120,17 @@ function nobs(data::DataFrame)
 end
 
 function nobs(data::Tuple)
-
+    
     n = nobs(first(data))
-
+    
     for x in Base.tail(data)
-
         nobs(x) == n ||
             throw(ArgumentError(
                 "All tuple elements must have the same number of observations."
             ))
-
     end
 
     return n
-
 end
 
 
