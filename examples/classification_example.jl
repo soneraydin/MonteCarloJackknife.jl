@@ -4,7 +4,7 @@ using LinearAlgebra
 using DataFrames
 using GLM
 using MonteCarloJackknife
-using Plots
+using StatsPlots
 
 Random.seed!(1234)
 
@@ -19,7 +19,7 @@ z1 = randn(n)
 z2 = -0.6 .* z1 .+ sqrt(1 - 0.6^2) .* randn(n)
 z3 = -0.6 .* z2 .+ sqrt(1 - 0.6^2) .* randn(n)
 
-# Within-group correlation ≈ 0.8
+# Within-group correlation
 ρ = 0.8
 
 x1 =  z1 .+ sqrt(1-ρ^2) .* randn(n)
@@ -37,7 +37,7 @@ x6 =  ρ .* z3 .+ sqrt(1-ρ^2) .* randn(n)
      1.5,
      0.0,
     -1.5,
-     1.0,
+     0,
     -2.0
 ]
 
@@ -63,6 +63,10 @@ dataset = DataFrame(
     x6 = x6
 )
 
+# -------------------------------------------------------------------------
+# Logistic regression function
+# -------------------------------------------------------------------------
+
 function logistic_regression(data)
     model = glm(
         @formula(y ~ x1 + x2 + x3 + x4 + x5 + x6),
@@ -79,7 +83,7 @@ full_sample = logistic_regression(dataset)
 # Monte Carlo delete-d jackknife
 # -------------------------------------------------------------------------
 
-d = round(Int, 0.3n)
+d = round(Int, 0.8n)
 
 result = mc_delete_d_jackknife(
     logistic_regression,
@@ -97,17 +101,38 @@ println(result.bias_corrected_mean)
 println("\nMonte Carlo Jackknife standard errors:")
 println(result.std_error)
 
+# -------------------------------------------------------------------------
+# Visualization
+# -------------------------------------------------------------------------
+
 coef_names = ["β₀","β₁","β₂","β₃","β₄","β₅","β₆"]
 
+# Each column corresponds to one parameter
 betas = result.replicates'
 
-# Heatmap of the pairwise correlations between coefficient estimates
-heatmap(
-    cor(betas);
-    xticks=(1:7, coef_names),
-    yticks=(1:7, coef_names),
-    aspect_ratio=1,
-    color=:RdBu,
-    clim=(-1,1),
-    title="Correlation of Jackknife Estimates"
+# -------------------------------------------------------------------------
+# Boxplot with true values
+# -------------------------------------------------------------------------
+
+p1 = boxplot(
+    betas;
+    xticks = (1:7, coef_names),
+    xlabel = "Coefficient",
+    ylabel = "Estimate",
+    title = "Monte Carlo Jackknife Estimates",
+    label = "",
+    legend = :topright,
+    linewidth = 2,
+    fillalpha = 0.5,
+    outliers = true,
+    size = (700,500)
+)
+scatter!(
+    p1,
+    1:length(βtrue),
+    βtrue;
+    marker = (:star5, 12),
+    color = :red,
+    markerstrokecolor = :black,
+    label = "True value"
 )
