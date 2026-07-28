@@ -6,10 +6,7 @@ using DataFrames
 using MultivariateStats
 using MonteCarloJackknife
 
-############################################################
 # Benchmark Settings
-############################################################
-
 Random.seed!(1234)
 
 NUM_SAMPLES = 200          # Monte Carlo subsets
@@ -20,9 +17,7 @@ println("Julia Version : ", VERSION)
 println("CPU Threads   : ", Threads.nthreads())
 println("==========================================")
 
-############################################################
 # Result table
-############################################################
 
 results = DataFrame(
     Problem = String[],
@@ -32,9 +27,7 @@ results = DataFrame(
     Speedup = Float64[]
 )
 
-############################################################
 # Benchmark helper
-############################################################
 
 function benchmark_problem(problem_name,
                            dims,
@@ -90,10 +83,8 @@ function benchmark_problem(problem_name,
 
 end
 
-############################################################
 # Example 1
 # Multiple Linear Regression
-############################################################
 
 println()
 println("Generating regression data...")
@@ -125,10 +116,8 @@ benchmark_problem(
     d
 )
 
-############################################################
 # Example 2
 # Binary Classification
-############################################################
 
 println()
 println("Generating classification data...")
@@ -174,10 +163,8 @@ benchmark_problem(
     d
 )
 
-############################################################
 # Example 3
 # PCA
-############################################################
 
 println()
 println("Generating PCA data...")
@@ -210,9 +197,7 @@ benchmark_problem(
     d
 )
 
-############################################################
 # Results
-############################################################
 
 println()
 println("==========================================")
