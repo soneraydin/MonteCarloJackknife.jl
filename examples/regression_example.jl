@@ -2,9 +2,7 @@ using MonteCarloJackknife, Random, Statistics, LinearAlgebra, Plots
 
 Random.seed!(1234)
 
-# -------------------------------------------------------------------------
 # Simulate regression data
-# -------------------------------------------------------------------------
 
 n = 2000
 
@@ -32,9 +30,7 @@ end
 
 beta_hat = X \ y
 
-# -------------------------------------------------------------------------
 # Monte Carlo delete-d jackknife
-# -------------------------------------------------------------------------
 
 d = round(Int, 0.9*n)
 
@@ -53,9 +49,7 @@ println(beta_hat)
 println("\nMonte Carlo Jackknife standard errors:")
 println(result.std_error)
 
-# -------------------------------------------------------------------------
 # Histograms of coefficient estimates
-# -------------------------------------------------------------------------
 
 bc_beta = result.bias_corrected_mean
 
@@ -113,9 +107,7 @@ end
 
 display(p)
 
-# -------------------------------------------------------------------------
 # Correlation heatmap
-# -------------------------------------------------------------------------
 
 corrmat = cor(betas')
 
