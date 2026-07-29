@@ -8,9 +8,7 @@ using StatsPlots
 
 Random.seed!(1234)
 
-# -------------------------------------------------------------------------
 # Simulate binary logistic regression data
-# -------------------------------------------------------------------------
 
 n = 2000
 
@@ -63,9 +61,7 @@ dataset = DataFrame(
     x6 = x6
 )
 
-# -------------------------------------------------------------------------
 # Logistic regression function
-# -------------------------------------------------------------------------
 
 function logistic_regression(data)
     model = glm(
@@ -79,9 +75,7 @@ end
 
 full_sample = logistic_regression(dataset)
 
-# -------------------------------------------------------------------------
 # Monte Carlo delete-d jackknife
-# -------------------------------------------------------------------------
 
 d = round(Int, 0.8n)
 
@@ -101,18 +95,14 @@ println(result.bias_corrected_mean)
 println("\nMonte Carlo Jackknife standard errors:")
 println(result.std_error)
 
-# -------------------------------------------------------------------------
 # Visualization
-# -------------------------------------------------------------------------
 
 coef_names = ["β₀","β₁","β₂","β₃","β₄","β₅","β₆"]
 
 # Each column corresponds to one parameter
 betas = result.replicates'
 
-# -------------------------------------------------------------------------
 # Boxplot with true values
-# -------------------------------------------------------------------------
 
 p1 = boxplot(
     betas;
