@@ -181,6 +181,7 @@ Additional examples and more detailed versions of the ones above are available i
 * Multivariate linear regression
 * Principal Components Analysis
 * Binary classification
+* Multithreaded execution benchmarks
 
 ## Citation
 
