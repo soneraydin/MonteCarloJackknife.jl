@@ -184,8 +184,21 @@ Additional examples and more detailed versions of the ones above are available i
 * Multithreaded execution benchmarks
 
 ## Citation
-
-Coming soon...
+If you find this package useful in your research, please consider citing the related [paper](https://zenodo.org/records/21673227), using the following:
+```bibtex
+@misc{aydin_2026_21673227,
+  author       = {AYDIN, Soner},
+  title        = {MonteCarloJackknife.jl: Fast and Scalable Monte
+                   Carlo Approximation of Delete-d Jackknife
+                   Estimators in Julia
+                  },
+  month        = jul,
+  year         = 2026,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.21673227},
+  url          = {https://doi.org/10.5281/zenodo.21673227},
+}
+```
 
 ## Acknowledgements
 
