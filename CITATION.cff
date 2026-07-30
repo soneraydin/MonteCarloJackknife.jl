@@ -1,10 +1,21 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "If you find this package useful in your research, please consider citing the related paper:"
+
+title: "MonteCarloJackknife.jl"
+type: software
+
 authors:
-  - family-names: "AYDIN"
+  - family-names: "Aydın"
     given-names: "Soner"
-title: "MonteCarloJackknife.jl: Fast and Scalable Monte Carlo Approximation of Delete-d Jackknife Estimators in Julia"
-version: "1.0.0"
-doi: "10.5281/zenodo.21673227"
-date-released: "2026-07-30"
-url: "https://github.com"
+
+repository-code: "https://github.com/soneraydin/MonteCarloJackknife.jl"
+
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Aydın"
+      given-names: "Soner"
+  title: "MonteCarloJackknife.jl: Fast and Scalable Monte Carlo Approximation of Delete-d Jackknife Estimators in Julia"
+  year: 2026
+  doi: "10.5281/zenodo.21673227"
+  url: "https://doi.org/10.5281/zenodo.21673227"
