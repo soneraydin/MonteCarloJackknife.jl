@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you find this package useful in your research, please consider citing the related paper:"
+title: "MonteCarloJackknife.jl: Fast and Scalable Monte Carlo Approximation of Delete-d Jackknife Estimators in Julia"
+type: article
+
+authors:
+  - family-names: "AYDIN"
+    given-names: "Soner"
+
+year: 2026
+month: 7
+
+doi: 10.5281/zenodo.21673227
+url: https://doi.org/10.5281/zenodo.21673227
