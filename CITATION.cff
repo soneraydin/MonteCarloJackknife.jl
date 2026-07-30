@@ -1,22 +1,17 @@
 cff-version: 1.2.0
 
-title: "MonteCarloJackknife.jl: Fast and Scalable Monte Carlo Approximation of Delete-d Jackknife Estimators in Julia"
-
-message: >
-  If you find this software useful in your research, please cite the archived Zenodo release.
+message: "If you use this software in your research, please cite it as below."
 
 type: software
+
+title: "MonteCarloJackknife.jl: Fast and Scalable Monte Carlo Approximation of Delete-d Jackknife Estimators in Julia"
 
 authors:
   - family-names: "AYDIN"
     given-names: "Soner"
 
+doi: "10.5281/zenodo.21673227"
+
 version: "1.0.0"
 
 date-released: "2026-07-29"
-
-doi: 10.5281/zenodo.21673227
-
-repository-code: "https://github.com/soneraydin/MonteCarloJackknife.jl"
-
-license: "MIT"
