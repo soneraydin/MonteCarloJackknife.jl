@@ -50,7 +50,7 @@ mc_delete_d_jackknife(
 
 ## A Simple Univariate Example (Median)
 
-Estimate the sampling variability of the sample median using Monte Carlo delete-(d) jackknife.
+Estimate the sampling variability of the sample median using Monte Carlo delete-d jackknife.
 
 ```julia
 using MonteCarloJackknife
@@ -75,7 +75,7 @@ The returned object contains
 
 * `replicates` — Monte Carlo replicate estimates.
 * `mean_jackknife` — Mean of the Monte Carlo replicates.
-* `bias_corrected_mean` — Bias-corrected delete-(d) jackknife estimate.
+* `bias_corrected_mean` — Bias-corrected delete-d jackknife estimate.
 * `std_error` — Delete-(d) jackknife standard error.
 
 ## A Multivariate Example (Regression)
