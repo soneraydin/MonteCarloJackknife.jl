@@ -4,7 +4,7 @@
 
 # MonteCarloJackknife.jl
 
-MonteCarloJackknife.jl is a Julia package for efficient **Monte Carlo approximation of the delete-(d) jackknife**. Instead of exhaustively evaluating all possible delete-(d) subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators.
+MonteCarloJackknife.jl is a Julia package for fast and scalable **Monte Carlo approximation of the delete-(d) jackknife** estimators. Instead of exhaustively evaluating all possible delete-(d) subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators.
 
 ## Features
 
@@ -166,11 +166,11 @@ MonteCarloJackknife.jl can be used for:
 * Computationally efficient approximation of delete-(d) jackknife for large datasets and complex functions.
 * Standard error estimation.
 * Bias estimation and bias correction.
-* Empirical estimation of t-statistics and p-values for arbitrarily complex parameters, without distributional assumptions.
+* Empirical estimation of t-statistics, Wald statistics and p-values for arbitrarily complex parameters, without distributional assumptions.
 * Constructing weakly informative priors for regularized machine learning (ML) models.
-* Assessing estimator stability and multicollinearity.
-* Assesing feature importance and parameter sensitivity to sample size.
 * Ensemble learning, via combining the parameters from ML models fitted on different subsamples.
+* Assesing feature importance and parameter sensitivity to sample size.
+* Assessing estimator stability and multicollinearity.
 
 ## Examples
 
