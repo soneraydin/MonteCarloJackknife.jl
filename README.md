@@ -76,7 +76,7 @@ The returned object contains
 * `replicates` — Monte Carlo replicate estimates.
 * `mean_jackknife` — Mean of the Monte Carlo replicates.
 * `bias_corrected_mean` — Bias-corrected delete-d jackknife estimate.
-* `std_error` — Delete-(d) jackknife standard error.
+* `std_error` — Delete-d jackknife standard error.
 
 ## A Multivariate Example (Regression)
 
