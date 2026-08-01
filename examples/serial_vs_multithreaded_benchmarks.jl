@@ -1,3 +1,7 @@
+# In our experiments for the preprint paper, we used 10 cores.
+# For the same setup, you can run the following Bash command before running this code:
+# julia -t 10
+
 using Random
 using Statistics
 using LinearAlgebra
