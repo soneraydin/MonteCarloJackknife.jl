@@ -4,7 +4,7 @@
 
 # MonteCarloJackknife.jl
 
-MonteCarloJackknife.jl is a Julia package for fast and scalable **Monte Carlo approximation of the delete-(d) jackknife** estimators. Instead of exhaustively evaluating all possible delete-(d) subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators.
+MonteCarloJackknife.jl is a Julia package for fast and scalable **Monte Carlo approximation of the delete-d jackknife** estimators. Instead of exhaustively evaluating all possible delete-d subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators.
 
 ## Features
 
@@ -15,7 +15,7 @@ MonteCarloJackknife.jl is a Julia package for fast and scalable **Monte Carlo ap
 
   * Monte Carlo replicate estimates,
   * Monte Carlo mean,
-  * bias-corrected delete-(d) jackknife estimate,
+  * bias-corrected delete-d jackknife estimate,
   * jackknife standard error.
 * Optional multi-threading for expensive estimation functions.
 
@@ -119,7 +119,7 @@ println("\nStandard errors:")
 println(result.std_error)
 ```
 
-In this example, `result.replicates` matrix contains one row for each regression coefficient and one column for each Monte Carlo replicate.
+In this example, `result.mean_jackknife` and `result.std_error` vectors return the desired statistic for each regression coefficient, and `result.replicates` matrix contains one row for each regression coefficient and one column for each Monte Carlo replicate.
 
 ## A More Complex Example (Principal Components Analysis)
 
@@ -163,7 +163,7 @@ println(result.std_error)
 
 MonteCarloJackknife.jl can be used for:
 
-* Computationally efficient approximation of delete-(d) jackknife for large datasets and complex functions.
+* Computationally efficient approximation of delete-d jackknife for large datasets and complex functions.
 * Standard error estimation.
 * Bias estimation and bias correction.
 * Empirical estimation of t-statistics, Wald statistics and p-values for arbitrarily complex parameters, without distributional assumptions.
