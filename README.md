@@ -4,7 +4,7 @@
 
 # MonteCarloJackknife.jl
 
-MonteCarloJackknife.jl is a Julia package for fast and scalable **Monte Carlo approximation of the delete-d jackknife** estimators. Instead of exhaustively evaluating all possible delete-d subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators.
+MonteCarloJackknife.jl is a Julia package for fast and scalable **Monte Carlo approximation of the delete-d jackknife** estimators. Instead of exhaustively evaluating all possible delete-d subsamples, the package estimates jackknife quantities by randomly sampling a user-specified number of subsamples, making the method practical for large datasets and computationally expensive estimators. Historically, the exact implementation of delete-d jackknife procedure has been limited to only small datasets and simple statistics. However, this package bypasses those limitations via leveraging Monte Carlo simulation methodology and high-performance computing capabilities of the Julia language; paving the way for its application to large-scale machine learning models.
 
 ## Features
 
@@ -45,7 +45,7 @@ mc_delete_d_jackknife(
 | `f`             | User-defined estimator or statistic.                                     |
 | `data`          | Dataset supplied to `f`. May be a vector, matrix, `DataFrame`, or tuple. |
 | `d`             | Number of observations deleted in each subsample.                        |
-| `num_samples`   | Number of Monte Carlo delete-(d) subsamples.                             |
+| `num_samples`   | Number of Monte Carlo delete-d subsamples.                             |
 | `multithreaded` | Whether to evaluate subsamples in parallel.                              |
 
 ## A Simple Univariate Example (Median)
